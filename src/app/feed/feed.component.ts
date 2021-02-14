@@ -62,13 +62,14 @@ export class FeedComponent implements OnInit {
 
     // Make a service call 
 
+    console.log('Inside patchMeme() of component'); 
     this.feedService
         .patchMeme(this.memeId, this.memeForm)
         .subscribe((response) => {
 
+          console.log(response); 
           this.showEditForm = false; 
           this.memeId = 0; 
-
           window.location.reload(); 
 
         }

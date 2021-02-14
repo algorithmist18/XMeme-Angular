@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HomeService {
 
-  URL_PREFIX: string = 'https://afternoon-coast-72955.herokuapp.com/'; 
+  URL_PREFIX: string = 'https://afternoon-coast-72955.herokuapp.com'; 
   PORT: number = 8080; 
 
   constructor(private httpClient: HttpClient) { }

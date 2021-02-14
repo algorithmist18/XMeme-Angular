@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FeedService {
 
-  URL_PREFIX: string = 'https://afternoon-coast-72955.herokuapp.com/'
+  URL_PREFIX: string = 'https://afternoon-coast-72955.herokuapp.com'
   PORT: number = 8080; 
 
   constructor(private httpClient: HttpClient) { }
@@ -20,6 +20,7 @@ export class FeedService {
 
   patchMeme(id: number, form: any): Observable <any> {
 
+    console.log('Inside patchMeme() of service'); 
     let url: string = this.URL_PREFIX + '/memes/' + id; 
     return this.httpClient.patch(url, form.value); 
   }
