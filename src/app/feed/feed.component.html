@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!--Bootstrap tags here-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>XMeme | Meme feed </title>
+</head>
+<body>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <div id="meme-feed-container">
+        <p><a href="/memes" (click)="goBackToForm()">Back</a></p>
+        <div id="meme-post" *ngFor="let memePost of memePosts">
+            <div id="meme" *ngIf="memeId!=memePost.id">
+                <p><strong id="username">{{memePost.name}}</strong> on <span time="id">{{memePost.updatedOn | date : 'medium'}}</span><span id="edit-link" *ngIf="name==memePost.name"> &nbsp; <a (click) = "editPost(memePost.id, memePost.caption, memePost.url)">Edit</a></span></p>
+                <p>{{memePost.caption}}</p>
+                <p><img src="{{memePost.url}}" id="meme-img"></p>
+            </div>
+            <div id="meme-form" *ngIf="memeId==memePost.id">
+            <form [formGroup]="memeForm" id="meme-form">
+                <div class="form-group">
+                    <label for="caption">Caption:</label>
+                    <input type="text" class="form-control" id="caption" name="caption" formControlName="caption" value="{{memePost.caption}}">
+                    <p *ngIf="captionInvalid()">This field is required</p>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image URL:</label>
+                    <input type="text" class="form-control" id="imageUrl" name="imageUrl" formControlName="url" value="{{memePost.url}}">
+                    <p *ngIf="imageUrlInvalid()">This field is required</p>
+                </div>
+                <button class="btn btn-primary" [disabled] = "!memeForm?.valid">Edit</button>
+                &nbsp; &nbsp; 
+                <button class="btn btn-success" (click) = "goBack()">Back</button>
+            </form>
+        </div>
+        </div>
+        <br><br>
+    </div>
+</body>
+</html>
